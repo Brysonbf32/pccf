@@ -2,24 +2,14 @@
        <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         <style>
-    .logodash{
-        width: 40px!important;
-        height: 40px!important;        
-    }
-</style>
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <img class=" rounded-full logodash" src="img/logo.jpg" alt="">
-                </div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
+            .logodash{
+                width: 40px!important;
+                height: 40px!important;        
+            }
+        </style>
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="home-page.php">
+                <a class="nav-link" href="home-page">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>P.C.C.F</span></a>
             </li>
@@ -41,11 +31,40 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Liste Utilisateurs:</h6>
-                        <a class="collapse-item" href="utilisateur-page.php">Utilisateur</a>
+                        <a class="collapse-item" href="s_utilisateur-page">Liste Utilisateur</a>
                         <!--<a class="collapse-item" href="cards.html">Cards</a>-->
                     </div>
                 </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#blog"
+                    aria-expanded="true" aria-controls="blog">
+                    <i class="fa fa-book"></i>
+                    <span>Nos Blogs</span>
+                </a>
+                <div id="blog" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="s_blog">Liste Blogs</a>
+                        <a class="collapse-item" href="s_comment_blog">Liste Commentaires</a>
+
+                    </div>
+                   
+                </div>
+                
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#don"
+                    aria-expanded="true" aria-controls="don">
+                    <i class="fa fa-hands"></i>
+                    <span>Nos Dons</span>
+                </a>
+                <div id="don" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="s_fairedon">Nos Dons</a>
+                    </div>
+                   
+                </div>
+                
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -53,63 +72,20 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Page-Accueil</span>
+                    <span>Pages</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="aboutsection.php">S_About</a>
-                        <a class="collapse-item" href="blogsection.php">S-Blog</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                        <a class="collapse-item" href="s_about">P-Apropos</a>
+                        <a class="collapse-item" href="s_programs">P-Programmes</a>
+                        <a class="collapse-item" href="s_contact">P-Contact</a>
+                        <a class="collapse-item" href="s_subscribe">P-Subscribe</a>
+                        <a class="collapse-item" href="s_slide">P-Slide</a>
+                        <a class="collapse-item" href="s_projets">P-Projets</a>
                     </div>
                 </div>
             </li>
-
-            <!-- Divider 
-            <hr class="sidebar-divider">
-
-             Heading 
-            <div class="sidebar-heading">
-                Addons
-            </div>
--->
-            <!-- Nav Item - Pages Collapse Menu 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
-            -->
-            <!-- Nav Item - Charts
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-
-            Nav Item - Tables
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li> -->
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

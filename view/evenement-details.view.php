@@ -31,15 +31,20 @@
   <link href="assets/css/main.css" rel="stylesheet">
 
 </head>
+<style>
+  .img-fluids{
+    width: 50%!important;
+    height: 50%!important;
+
+  }
+</style>
   <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="index.php" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
+      <a href="index" class="">
         <div>
-        <img src="assets/img/logo.jpg" class="img-fluid" alt="">
+        <img src="assets/img/logo3.png" class="w-20 h-10 h-12 rounded-sm" alt="">
         </div>
       </a>
 
@@ -47,33 +52,13 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.php">Accueil</a></li>
-          <li><a href="about.php">Apropos</a></li>
-          <li><a href="services.php">Nos Programmes</a></li> 
-          <li><a href="evenement.php" class="active">Evenements</a></li> 
-         <!--- <li><a href="services.html">Services</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li> -->
-         <li><a href="contact.php">Contact</a></li> 
+          <li><a href="index">Accueil</a></li>
+          <li><a href="apropos">Apropos</a></li>
+          <li><a href="services">Nos Programmes</a></li> 
+          <li><a href="evenement" class="active">Evenements</a></li> 
+         <li><a href="contact"  >Contact</a></li> 
          <li>
-          <a href="#" class="px-2"><button class=" bg-yellow-400 text-white px-2 p-2 rounded-full hover:border-yellow-400">Faire Don</button></a>
+          <a href="fairedon" class="px-2"><button class=" bg-yellow-400 text-white px-2 p-2 rounded-full hover:border-yellow-400">Faire Don</button></a>
          </li>
         </ul>
       </nav><!-- .navbar -->
@@ -83,12 +68,12 @@
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/breadcrumbs-bg.jpg');">
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/logo3.png');">
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
         <h2>Details Evenements</h2>
         <ol>
-          <li><a href="index.php">Accueil</a></li>
+          <li><a href="index">Accueil</a></li>
           <li>Details Evenements</li>
         </ol>
 
@@ -113,9 +98,22 @@
 
               <div class="meta-top">
                 <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="evenement-details.php"><?=$authori_blog?></a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="evenement-details.php"><time datetime="2020-01-01"><?=$datepub_blog?></time></a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="evenement-details.php">12 Comments</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#"><?=$util_nom?></a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="2020-01-01"><?=$datepub_blog?></time></a></li>
+                  <li class="d-flex align-items-center">
+                    <i class="bi bi-chat-dots"></i> 
+                    <?php
+                      $recupedata=$my_bd->query("SELECT * FROM tbl_comentblog WHERE blog_id= '$idblogs' LIMIT 1");
+                      if($recupedata->rowCount()>0){
+                      while($checkdata=$recupedata->fetch()){
+                          $idddcomments = current(($my_bd->query("SELECT COUNT(*) FROM tbl_comentblog WHERE blog_id='$idblogs' LIMIT 1"))->fetch());
+                    ?>
+                    <a href="evenement-details"><?=$idddcomments?> Commentaires</a>
+                    <?php
+                      }
+                    }
+                    ?>
+                  </li>
                 </ul>
               </div><!-- End meta top -->
 
@@ -134,12 +132,51 @@
 
                 <i class="bi bi-tags"></i>
                 <ul class="tags">
-                  <li><a href="evenement.php">Evenements</a></li>
+                  <li><a href="evenement">Evenements</a></li>
                   <li><a href="#">Changa Changa</a></li>
                 </ul>
               </div><!-- End meta bottom -->
+              <div class="comments">
+                  <?php
+                    $recupedata=$my_bd->query("SELECT * FROM tbl_comentblog WHERE blog_id= '$idblogs' LIMIT 1");
+                    if($recupedata->rowCount()>0){
+                    while($checkdata=$recupedata->fetch()){
+                        $idddcomments = current(($my_bd->query("SELECT COUNT(*) FROM tbl_comentblog WHERE blog_id='$idblogs' LIMIT 1"))->fetch());
+                  ?>
+              <h4 class="comments-count"><?=$idddcomments?> Commentaires</h4>
+              <?php
+                    }
+                  }
+              ?>
+              <div id="comment-1" class="comment">
+                <div class="d-flex">
+                  <div>
+                  <?php
+                    $recupedata=$my_bd->query("SELECT * FROM tbl_comentblog WHERE blog_id= '$idblogs'");
+                    if($recupedata->rowCount()>0){
+                    while($checkdata=$recupedata->fetch()){
+                        $com_idd =$checkdata['com_id'];
+                        $com_nom =$checkdata['com_nom'];
+                        $com_comment =$checkdata['com_comment'];
+                        $com_date =$checkdata['com_date'];
+
+                        $idddcomments = current(($my_bd->query("SELECT COUNT(*) FROM tbl_comentblog WHERE blog_id='$idblogs'"))->fetch());
+                  ?>
+                    <i class="bi bi-person text-yellow-400"></i> <a href="#" class="px-2"><?=$com_nom?></a></li>
+                    <time datetime="<?=$com_date?>">Commenté le <?=$com_date?></time>
+                    <p>
+                      <?=$com_comment?>
+                    </p>
+                    <?php
+                     }
+                    }
+                    ?>
+                  </div>
+                </div>
+              </div><!-- End comment #1 -->
 
             </article><!-- End blog post -->
+            
             <div class="comments">
 
               <div class="reply-form">
@@ -176,21 +213,12 @@
           <div class="col-lg-4">
 
             <div class="sidebar">
-
-              <div class="sidebar-item search-form">
-                <h3 class="sidebar-title">Search</h3>
-                <form action="" class="mt-3">
-                  <input type="text">
-                  <button type="submit"><i class="bi bi-search"></i></button>
-                </form>
-              </div><!-- End sidebar search formn-->
-
                 <div class="sidebar-item recent-posts">
                     <h3 class="sidebar-title">Recent Evenements</h3>
                     <div class="mt-3">
 
                         <?php
-                            $recupedata=$my_bd->query("SELECT * FROM tbl_blog ORDER BY blog_id DESC LIMIT 5");
+                            $recupedata=$my_bd->query("SELECT * FROM tbl_blog  ORDER BY blog_id DESC LIMIT 5");
                             if($recupedata->rowCount()>0){
                             while($checkdata=$recupedata->fetch()){
                                 $idblog=$checkdata['blog_id'];
@@ -199,12 +227,12 @@
                                 $blogcontent=$checkdata['blog_content'];
                                 $blogdatepub=$checkdata['blog_date'];
                                 $blogcateg=$checkdata['categorie_blog'];
-                                $blogauthor=$checkdata['blog_author'];
+                                
                             ?>
                         <div class="post-item mt-3">
                             <img src="assets/img/blog/<?=$imageblog?>" alt="">
                             <div>
-                            <h4><a href="evenement-details.php?blogdetail=<?=$idblog?> "><?=$titreblog?></a></h4>
+                            <h4><a href="evenement-details?blogdetail=<?=$idblog?> "><?=$titreblog?></a></h4>
                             <time datetime="2020-01-01"><?=$blogdatepub?></time>
                             </div>
                         </div><!-- End recent post item-->
@@ -217,7 +245,7 @@
 
 
             </div><!-- End Blog Sidebar -->
-<br>
+            <br>
             <div class="sidebar">
 
               <div class="sidebar-item search-form">

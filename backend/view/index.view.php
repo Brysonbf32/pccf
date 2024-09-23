@@ -53,16 +53,28 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Bienvenu!</h1>
+                                        <?php
+                                            if(isset($_SESSION['status']) && $_SESSION != ''){
+                                                ?>
+                                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                    <strong>Pardon Erreur!!!</strong> <?=$_SESSION['status']; ?>
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <?php
+                                                unset($_SESSION['status']);
+                                            }
+                                        ?>
                                     </div>
-                                    <p class="incorect"><?=$incorect?></p>
                                     <form method="POST">
                                         <div class="form-group">
-                                            <input name="input_email" type="email" class="form-control form-control-user"
+                                            <input name="input_email" type="email" class="modal_input"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Entrer Email Address..." >
                                         </div>
                                         <div class="form-group">
-                                            <input name="input_password" type="password" class="form-control form-control-user"
+                                            <input name="input_password" type="password" class="modal_input"
                                                 id="exampleInputPassword" placeholder="Mot de passe" >
                                         </div>
                                         <div class="form-group">
@@ -71,7 +83,7 @@
                                                 <label class="custom-control-label" for="customCheck">Se souvenir de moi</label>
                                             </div>
                                         </div>
-                                        <button class="btn btn- btn-user btn-block loginbtn" type="submit" name="loginpccf">Connecter</button>
+                                        <button class=" btn-user btn-block modal_input loginbtn" type="submit" name="loginpccf">Connecter</button>
                                     </form>
                                 </div>
                             </div>

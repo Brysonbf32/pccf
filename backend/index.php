@@ -1,4 +1,17 @@
 <?php
+ /**
+  *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ * @author JABF32                                                  ++       
+ * TELEPHONE: +243 901246672                                       ++
+ * WHATSAP  : +243 991 074 111                                     ++
+ * EMAIL    : nsibulabahati@gmail.com                              ++
+ * DATE Co  : DU 14 AVRIL AU 26 AVRIL 2024                         ++
+ * #=======SITE WEB DYNAMICS PEACE CHANGA-CHANGA FOUNDATION=====#  ++
+ *                                                                 ++
+ *                                                                 ++
+ * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ */
+
 require('../config/databases.php');
 error_reporting(0);
 session_start();
@@ -22,19 +35,19 @@ if(isset($_POST['loginpccf'])){
         header('Location: home-page.php');
     }
       elseif($access == "Particulier"){
-        header('Location: home-page.php');
+        header('Location: home-page');
     }
       else{
-        $utilinonreco= "cet utilisateur ne pa reconnu";
+        $_SESSION['status'] = " Cet Utilisateur N'est Pas Reconnu !!!";
       }
     }
     else{
-      $incorect= "incorect email or password";
+      $_SESSION['status'] = " Email ou Mot De Passe Incorect !!!";
     }
   }
 }
 if($my_bd == true){
-  require_once('view/index.view.php');
+  require('view/index.view.php');
 }
 ?>
  

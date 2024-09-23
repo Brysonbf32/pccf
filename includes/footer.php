@@ -8,25 +8,42 @@
           <div class="col-lg-4 col-md-6">
             <div class="footer-info">
               <h4 class="text-red-200 text-lg">PEACE CHANGA-CHANGA FONDATION</h4>
-              <p> 
-              Avenue Kalehe, Quartier Mulongwe , Uvira Ville, RDC<br><br>
-                <strong>Phone:</strong><a href="tel:+243 972584021">+243 972584021</a>&nbsp;<a href="tel:+243 853008390">+243 853008390</a><br>
-                <strong>Email:</strong><a href="mailto:peacechangachangafoudation1@gmail.com" target="_blank">Peacechangachangafoudation1@gmail.com</a><br>
-              </p>
-              <div class="social-links d-flex mt-3">
-                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=100070116601772"  class="d-flex align-items-center justify-content-center" target="_blank"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="d-flex align-items-center justify-content-center" target="_blank"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="d-flex align-items-center justify-content-center" target="_blank"><i class="bi bi-linkedin"></i></a>
+              <?php
+                  $datetoday = date("d/m/y");
+                  $recupedata=$my_bd->query("SELECT * FROM tbl_contact ORDER BY id_co LIMIT 1");
+                  if($recupedata->rowCount()>0){
+                  while($checkdata=$recupedata->fetch()){
+                      $id_co=$checkdata['id_co'];
+                      $email_co=$checkdata['email_co'];
+                      $address_co=$checkdata['address_co'];
+                      $numero_co=$checkdata['numero_co'];
+                ?>
+                <p> 
+              <div>
+               <?=$address_co?><br><br>
+                  <strong>Phone:</strong><a href="tel:<?=$numero_co?>"><?=$numero_co?></a><br>
+                  <strong>Email:</strong><a href="mailto:<?=$email_co?>" target="_blank"><?=$email_co?></a><br>
+                </p>
+                <div class="social-links d-flex mt-3">
+                  <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
+                  <a href="https://www.facebook.com/profile.php?id=100070116601772"  class="d-flex align-items-center justify-content-center" target="_blank"><i class="bi bi-facebook"></i></a>
+                  <a href="#" class="d-flex align-items-center justify-content-center" target="_blank"><i class="bi bi-instagram"></i></a>
+                  <a href="#" class="d-flex align-items-center justify-content-center" target="_blank"><i class="bi bi-linkedin"></i></a>
+                </div>
               </div>
+              <?php
+                  }
+                }
+              ?>
             </div>
+
           </div><!-- End footer info column-->
 
           <div class="col-lg-2 col-md-3 footer-links">
             <h4>Liens Importants</h4>
             <ul>
             <li><a href="index.php">Accueil</a></li>
-            <li><a href="about.php">Apropos</a></li>
+            <li><a href="apropos.php">Apropos</a></li>
             <li><a href="services.php">Nos Programmes</a></li> 
             <li><a href="evenement.php">Evenements</a></li> 
             <li><a href="contact.php">Contact</a></li> 
@@ -35,10 +52,10 @@
           <div class="col-lg-2 col-md-3 footer-links">
             <h4>Nos Programmes</h4>
             <ul>
-              <li><a href="#">Reseau Telecome</a></li>
-              <li><a href="#">Web Design</a></li>
-              <li><a href="#">Web Development</a></li>
-              <li><a href="#">Graphic Design</a></li>
+              <li><a href="#">Microfinance</a></li>
+              <li><a href="#">Humanisme</a></li>
+              <li><a href="#">Entreprenariat</a></li>
+              <li><a href="#">Agriculture</a></li>
             </ul>
           </div><!-- End footer links column-->
 
@@ -71,7 +88,7 @@
         </div>
         <div class="credits">
          
-          Designed by <a href="">Nami-Industry</a>
+          Designed by <a href="mailto:nami.industry@gmail.com"target="_blank">Nami-Industry</a>
         </div>
       </div>
     </div>

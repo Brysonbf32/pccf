@@ -10,10 +10,9 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link class=" rounded-full" href="assets/img/logo.jpg" rel="icon">
+  <link class=" rounded-full" href="assets/img/logo3.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script defer src="assets/js/script.js"></script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,24 +26,25 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script defer src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
-    <script defer src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
 
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
 </head>
+<style>
+  .img-fluids{
+    width: 50%!important;
+    height: 50%!important;
+
+  }
+</style>
   <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="index.php" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
+      <a href="index" class="">
         <div>
-        <img src="assets/img/logo.jpg" class="img-fluid" alt="">
+        <img src="assets/img/logo3.png" class="w-20 h-10 h-12 rounded-sm" alt="">
         </div>
       </a>
 
@@ -52,13 +52,13 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.php">Accueil</a></li>
-          <li><a href="about.php">Apropos</a></li>
-          <li><a href="services.php">Nos Programmes</a></li> 
-          <li><a href="evenement.php" class="active">Evenements</a></li> 
-         <li><a href="contact.php">Contact</a></li> 
+          <li><a href="index">Accueil</a></li>
+          <li><a href="apropos">Apropos</a></li>
+          <li><a href="services">Nos Programmes</a></li> 
+          <li><a href="evenement" class="active">Evenements</a></li> 
+         <li><a href="contact"  >Contact</a></li> 
          <li>
-          <a href="#" class="px-2"><button class=" bg-yellow-400 text-white px-2 p-2 rounded-full hover:border-yellow-400">Faire Don</button></a>
+          <a href="fairedon" class="px-2"><button class=" bg-yellow-400 text-white px-2 p-2 rounded-full hover:border-yellow-400">Faire Don</button></a>
          </li>
         </ul>
       </nav><!-- .navbar -->
@@ -67,12 +67,12 @@
   </header><!-- End Header -->
   <main id="main">
     <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/breadcrumbs-bg.jpg');">
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/logo3.png');">
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
         <h2>Evenements</h2>
         <ol>
-          <li><a href="index.php">Accueil</a></li>
+          <li><a href="index">Accueil</a></li>
           <li>Evenements</li>
         </ol>
 
@@ -86,7 +86,7 @@
         <div class="row gy-4 posts-list">
 
         <?php
-            $recupedata=$my_bd->query("SELECT * FROM tbl_blog ORDER BY blog_id");
+            $recupedata=$my_bd->query("SELECT * FROM tbl_blog ORDER BY blog_id DESC LIMIT 25");
             if($recupedata->rowCount()>0){
             while($checkdata=$recupedata->fetch()){
                 $idblog=$checkdata['blog_id'];
@@ -95,7 +95,16 @@
                 $blogcontent=$checkdata['blog_content'];
                 $blogdatepub=$checkdata['blog_date'];
                 $blogcateg=$checkdata['categorie_blog'];
-                $blogauthor=$checkdata['blog_author'];
+                $util_id =$checkdata['util_id'];
+                                                    
+                if(isset($util_id)){
+                    $fetchutilisate=$my_bd->query("SELECT * FROM tbl_utilisateurs WHERE util_id='$util_id'");
+                    $fetchutilisate->rowCount();
+                    $checkutili=$fetchutilisate->fetch();
+                      if($checkutili >0){
+                        $util_nom=$checkutili['util_nom'];                                    
+                      }
+                }
         ?>
           
 
@@ -109,11 +118,11 @@
 
               <div class="post-content d-flex flex-column">
 
-                <h3 class="post-title"><?=$titreblog?> </h3>
+                <h3 class=" text-lg hover:text-yellow-400"><?=$titreblog?> </h3>
 
-                <div class="meta d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-person"></i> <span class="ps-2"><?=$blogauthor?></span>
+                <div class="meta d-flex  text-sm align-items-center">
+                  <div class=" text-sm">
+                    <i class="bi bi-person"></i> <span class="text-sm"><?=$util_nom?></span>
                   </div>
                   <span class="px-3 text-black-50">/</span>
                   <div class="d-flex align-items-center">
@@ -123,7 +132,7 @@
 
                 <hr>
                 <p></p>
-                <a href="evenement-details.php?blogdetail=<?=$idblog?>" class="readmore stretched-link"><span>Savoir Plus</span><i class="bi bi-arrow-right"></i></a>
+                <a href="evenement-details?blogdetail=<?=$idblog?>" class="readmore stretched-link"><span>Savoir Plus</span><i class="bi bi-arrow-right"></i></a>
 
               </div>
             </div>
